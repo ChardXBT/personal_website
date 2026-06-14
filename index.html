@@ -3,7 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Eric Song is a University of Toronto statistics student building reliable automation, backend systems, and data-driven tools." />
+  <meta property="og:title" content="Eric Song · Software Developer" />
+  <meta property="og:description" content="University of Toronto statistics student building reliable automation, backend systems, and data-driven tools." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ericsong.tech/" />
+  <meta property="og:image" content="https://ericsong.tech/favicon_io/android-chrome-512x512.png" />
+  <meta name="twitter:card" content="summary" />
   <title>Eric Song</title>
+  <link rel="icon" href="favicon_io/favicon.ico" />
+  <link rel="apple-touch-icon" href="favicon_io/apple-touch-icon.png" />
+  <link rel="manifest" href="favicon_io/site.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
   <style>
@@ -31,6 +41,10 @@
     .contact { font-size: 0.82rem; color: #4a4742; margin-bottom: 0.9rem; line-height: 1.5; }
     .contact a { color: #4a4742; text-decoration: none; border-bottom: 1px solid #c5c1bb; }
     .contact a:hover { color: #2a2825; border-color: #2a2825; }
+    a:focus-visible {
+      outline: 2px solid #3d5a80;
+      outline-offset: 3px;
+    }
     .bio {
       font-size: 0.92rem;
       line-height: 1.7;
@@ -72,9 +86,9 @@
   </style>
 </head>
 <body>
-  <div class="card">
+  <main class="card">
     <h1>Eric Song</h1>
-    <p class="tagline">Statistics · University of Toronto · Class of 2029</p>
+    <p class="tagline">Statistics at the University of Toronto · Software Developer</p>
     <p class="contact">
       <a href="mailto:ericy.song@mail.utoronto.ca">ericy.song@mail.utoronto.ca</a>
        · 647-829-3856
@@ -84,7 +98,7 @@
       practical software. I enjoy turning messy real-world workflows into useful
       automation, backend systems, and data-driven tools.
     </p>
-    <div class="links">
+    <nav class="links" aria-label="Profile links">
 
       <a class="link" id="resume-link" href="ESResume.pdf" target="_blank" rel="noopener">
         <div class="link-icon icon-cv">
@@ -118,9 +132,9 @@
         <span class="arrow">→</span>
       </a>
 
-    </div>
+    </nav>
 
-  </div>
+  </main>
   <script>
     const resumeLink = document.getElementById('resume-link');
     resumeLink.href = `ESResume.pdf?v=${Date.now()}`;
