@@ -86,7 +86,7 @@
     </p>
     <div class="links">
 
-      <a class="link" href="ESResume.pdf?v=20260614" target="_blank" rel="noopener">
+      <a class="link" id="resume-link" href="ESResume.pdf" target="_blank" rel="noopener">
         <div class="link-icon icon-cv">
           <svg viewBox="0 0 24 24" fill="white"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm2-5h8v1.5H8V15zm0-3h8v1.5H8V12zm0-3h4v1.5H8V9z"/></svg>
         </div>
@@ -121,5 +121,9 @@
     </div>
 
   </div>
+  <script>
+    const resumeLink = document.getElementById('resume-link');
+    resumeLink.href = `ESResume.pdf?v=${Date.now()}`;
+  </script>
 </body>
 </html>
