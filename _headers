@@ -1,0 +1,20 @@
+/*
+  Content-Security-Policy: default-src 'self'; base-uri 'none'; connect-src 'none'; font-src 'self'; form-action 'none'; frame-ancestors 'none'; img-src 'self'; object-src 'none'; script-src 'none'; style-src 'self' 'unsafe-inline'; upgrade-insecure-requests
+  Permissions-Policy: camera=(), geolocation=(), microphone=()
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/docs/*
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Disposition: inline
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/favicon_io/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/ESResume.pdf
+  Cache-Control: public, max-age=3600
