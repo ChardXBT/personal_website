@@ -4454,9 +4454,10 @@ html.detail-locked .static-site {
 
 .static-site .email-actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
-  gap: var(--space-3);
+  gap: 0 var(--space-3);
 }
 
 .static-site .email-action {
@@ -4671,6 +4672,15 @@ html.detail-locked .static-site {
   .project-word {
     min-height: 44px;
     padding-block: 0.16rem;
+  }
+}
+
+@media (max-width: 23rem) {
+  .static-site .email-actions {
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    justify-content: start;
+    gap: 0 var(--space-3);
   }
 }
 
