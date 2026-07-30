@@ -4452,24 +4452,92 @@ html.detail-locked .static-site {
   text-decoration: none;
 }
 
-.static-site .email-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0 var(--space-3);
-}
-
-.static-site .email-action {
+.static-site .email-compose-trigger {
   min-height: 44px;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
   color: var(--portfolio-muted);
+  font-family: var(--sans);
   font-size: clamp(0.88rem, 1vw, 0.96rem);
   font-weight: 600;
   line-height: 1.2;
-  text-decoration: none;
   white-space: nowrap;
+  cursor: pointer;
+}
+
+.static-site .email-provider-menu {
+  width: min(25rem, calc(100vw - (2 * var(--space-3))));
+  max-height: min(34rem, calc(100dvh - (2 * var(--space-3))));
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  border: 1px solid var(--portfolio-line);
+  border-radius: 0;
+  background: var(--portfolio-surface);
+  color: var(--portfolio-ink);
+  font-family: var(--sans);
+}
+
+.static-site .email-provider-menu::backdrop {
+  background: rgba(33, 27, 22, 0.18);
+}
+
+.static-site .email-provider-header {
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: 0 var(--space-4);
+  border-bottom: 1px solid var(--portfolio-line);
+}
+
+.static-site .email-provider-header p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.static-site .email-provider-header button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--portfolio-muted);
+  font: inherit;
+  cursor: pointer;
+}
+
+.static-site .email-provider-list {
+  display: grid;
+  padding: var(--space-2);
+}
+
+.static-site .email-provider-list a {
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: 0 var(--space-2);
+  color: var(--portfolio-ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.static-site .email-provider-list a + a {
+  border-top: 1px solid var(--portfolio-line);
+}
+
+.static-site .email-provider-list a span:not(.sr-only) {
+  color: var(--portfolio-muted);
+  font-size: 0.84rem;
+  font-weight: 500;
 }
 
 @media (min-width: 56.0625rem) and (min-height: 42rem) {
@@ -4490,7 +4558,9 @@ html.detail-locked .static-site {
   }
 
   .static-site .email-address-link:hover .link-title,
-  .static-site .email-action:hover {
+  .static-site .email-compose-trigger:hover,
+  .static-site .email-provider-header button:hover,
+  .static-site .email-provider-list a:hover {
     color: var(--portfolio-accent);
   }
 }
@@ -4630,9 +4700,10 @@ html.detail-locked .static-site {
     gap: var(--space-1);
   }
 
-  .static-site .email-actions {
-    justify-content: flex-start;
-    gap: var(--space-3);
+  .static-site .email-compose-trigger {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
   }
 
   .collection-evidence {
@@ -4672,15 +4743,6 @@ html.detail-locked .static-site {
   .project-word {
     min-height: 44px;
     padding-block: 0.16rem;
-  }
-}
-
-@media (max-width: 23rem) {
-  .static-site .email-actions {
-    display: grid;
-    grid-template-columns: repeat(3, max-content);
-    justify-content: start;
-    gap: 0 var(--space-3);
   }
 }
 
