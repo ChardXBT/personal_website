@@ -2459,12 +2459,6 @@ html.detail-locked .static-site {
   font-size: 0.82rem;
 }
 
-.stack-list li + li::before {
-  margin-inline: 0.5rem;
-  color: rgba(123, 74, 50, 0.48);
-  content: "/";
-}
-
 .detail-links {
   display: flex;
   flex-wrap: wrap;
@@ -3644,18 +3638,17 @@ html.detail-locked .static-site {
 .noscript-stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 1.1rem;
+  gap: var(--space-2) var(--space-3);
   margin: var(--space-3) 0 0;
   padding: 0;
   color: var(--portfolio-muted);
   list-style: none;
 }
 
-.stack-list li + li::before,
-.noscript-stack li + li::before {
-  margin-right: 1.1rem;
-  color: var(--portfolio-line);
-  content: "·";
+.stack-list li,
+.noscript-stack li {
+  display: inline-flex;
+  min-width: 0;
 }
 
 .detail-links {
@@ -3848,11 +3841,6 @@ html.detail-locked .static-site {
   .noscript-stack li {
     display: block;
     min-width: 0;
-  }
-
-  .stack-list li + li::before,
-  .noscript-stack li + li::before {
-    display: none;
   }
 
   .static-site .static-name {

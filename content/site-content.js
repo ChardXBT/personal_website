@@ -38,7 +38,7 @@ export const DATA_COLLECTION_PROJECTS = deepFreeze([
       earliestDate: "2026-05-28",
       period: "May 28–July 29, 2026",
       source: "Commit history through 9d8081df21953b557169e04192747a5b1d24cab1",
-      method: "Counted 62 commits whose messages identify run, state, scrape, or archive snapshots.",
+      method: "Counted 60 commits whose messages identify run, state, scrape, or archive snapshots.",
       discount: "Rounded down to 60+ and did not describe every snapshot as a completed run.",
       confidence: "medium"
     }
@@ -198,12 +198,12 @@ export const PROJECTS = deepFreeze([
     id: "supervisor",
     categoryLabel: "Automation tools",
     label: "Automation Supervisor",
-    listMetric: "13 projects · 24/7 supervision",
-    description: "Scheduling, health checks, and clean recovery across 13 automation projects.",
+    listMetric: "13 tracked workflows · 24/7 supervision",
+    description: "Scheduling, health checks, and clean recovery across 13 tracked workflows.",
     provenance: "Public recovery pattern · private production supervisor",
-    metric: "13 projects under 24/7 supervision",
+    metric: "13 tracked workflows under one supervisor",
     metricNote: "Expanded from an 8-hour daily run window",
-    pitch: "Keeps 13 automation projects on schedule while I sleep—launching work, verifying fresh completions, and recovering after failures.",
+    pitch: "Keeps 13 automation workflows on schedule while I sleep, launching work, verifying fresh completions, and recovering after failures.",
     highlights: [
       "Coordinates project schedules while preventing duplicate processes and resource conflicts",
       "Requires fresh completion evidence before a run is marked successful",

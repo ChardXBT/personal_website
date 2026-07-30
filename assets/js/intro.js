@@ -4,7 +4,7 @@ import {
   DATA_COLLECTION_PROJECTS,
   PROJECTS,
   REEL_ITEMS
-} from "../../content/site-content.js";
+} from "../../content/site-content.js?v=20260730-1";
 
 export {
   BUILD_CATEGORIES,
@@ -12,7 +12,7 @@ export {
   DATA_COLLECTION_PROJECTS,
   PROJECTS,
   REEL_ITEMS
-} from "../../content/site-content.js";
+} from "../../content/site-content.js?v=20260730-1";
 
 export const INTRO_SESSION_KEY = "ericIntroPlayed";
 export const INTRO_TAB_MARKER = "ericIntroTabPlayed";
