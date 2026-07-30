@@ -1,0 +1,14 @@
+{
+  "name": "eric-song-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "serve": "node scripts/serve.mjs",
+    "content:sync": "node scripts/sync-project-content.mjs",
+    "content:check": "node scripts/sync-project-content.mjs --check"
+  }
+}

@@ -1,0 +1,12 @@
+# Preserve established public document URLs.
+/ESResume.pdf /documents/resume/eric-song-resume.pdf 301
+/assets/docs/7f0a386addff.pdf /documents/recommendation-letters/philip-oreopoulos-recommendation-letter.pdf 301
+/assets/docs/tutoring-letter-of-recommendation.pdf /documents/recommendation-letters/tutoring-letter-of-recommendation.pdf 301
+
+# Preserve legacy favicon and manifest URLs.
+/favicon_io/android-chrome-192x192.png /assets/icons/android-chrome-192x192.png 301
+/favicon_io/android-chrome-512x512.png /assets/icons/android-chrome-512x512.png 301
+/favicon_io/apple-touch-icon.png /assets/icons/apple-touch-icon.png 301
+/favicon_io/favicon-16x16.png /assets/icons/favicon-16x16.png 301
+/favicon_io/favicon-32x32.png /assets/icons/favicon-32x32.png 301
+/favicon_io/site.webmanifest /assets/icons/site.webmanifest 301
