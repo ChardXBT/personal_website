@@ -201,6 +201,7 @@ function createIntroExperience(doc = document, win = window) {
   const skipButton = doc.querySelector("[data-intro-skip]");
   const introUtilities = doc.querySelector("[data-intro-utilities]");
   const skipNavigation = doc.querySelector(".skip-navigation");
+  const replayLink = doc.querySelector("[data-replay-intro]");
   const projectPanel = doc.querySelector("#project-panel");
   const projectList = doc.querySelector(".project-list");
   const buildSentence = doc.querySelector(".build-sentence");
@@ -1205,8 +1206,10 @@ function createIntroExperience(doc = document, win = window) {
     detailLinks.hidden = false;
   }
 
-  function replayIntro() {
-    win.location.assign("/?replay=1");
+  function replayIntro(event) {
+    event?.preventDefault?.();
+    clearPlayedInThisTab(sessionStorage, win);
+    win.location.assign("/");
   }
 
   function cancelDetailClose() {
@@ -1572,6 +1575,7 @@ function createIntroExperience(doc = document, win = window) {
   reelWords.forEach((word) => word.addEventListener("animationend", onReelAnimationEnd));
   skipButton?.addEventListener("click", () => skipIntro({ source: "control", focusProjects: true }));
   skipNavigation?.addEventListener("click", onSkipNavigation);
+  replayLink?.addEventListener("click", replayIntro);
   closeButton.addEventListener("click", requestProjectClose);
   detail.addEventListener("click", (event) => {
     if (event.target === detail) requestProjectClose();
@@ -1680,9 +1684,6 @@ function createIntroExperience(doc = document, win = window) {
   const replayRequested = new win.URLSearchParams(win.location.search).get("replay") === "1";
   if (replayRequested) {
     clearPlayedInThisTab(sessionStorage, win);
-    const cleanUrl = new win.URL(win.location.href);
-    cleanUrl.searchParams.delete("replay");
-    win.history.replaceState(routeState("base"), "", `${cleanUrl.pathname}${cleanUrl.search}`);
   }
   let initialRoute = parseRoute();
   if (initialRoute.kind === "invalid") replaceRoute("base");
