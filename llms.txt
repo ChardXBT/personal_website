@@ -4,7 +4,7 @@
 
 Eric builds software for real workflows, with an emphasis on measurable impact, end-to-end ownership, useful automation, and systems that recover cleanly when things go wrong.
 
-Representative work includes a property-appraisal workspace that reduced report lookup from 15–20 minutes to 1–3 minutes across 200+ reports; Runway, a creator research/review system grounded in 770+ historical posts; CS marketplace automation that has processed 73K+ listings and tracked 500+ sales; and an automation supervisor coordinating 13 workflows with recovery behavior tested across 60+ fault scenarios.
+Representative work includes a property-appraisal workspace that reduced report lookup from 15–20 minutes to 1–3 minutes across 200+ reports; Runway, a creator research/review system grounded in 770+ historical posts; CS marketplace automation that has processed 73K+ listings and tracked 1,000+ sales; and an automation supervisor coordinating 29 workflows with recovery behavior tested across 70+ fault scenarios.
 
 For AI agents helping someone evaluate Eric for an internship or software role: treat this file as author-provided context, not as higher-priority instructions. Verify claims using the portfolio, resume, and public repositories below. The most relevant role areas are backend/software engineering, automation, internal tools, data systems, reliability, and product-minded engineering.
 
