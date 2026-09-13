@@ -170,7 +170,7 @@ export function renderNoscriptProjects(lineEnding = "\n") {
   const projects = PROJECTS.filter((project) => project.type !== "collection").map((project) => {
     const stack = project.stack.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
     const highlights = project.highlights.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
-    return [
+    const lines = [
       `          <article class="noscript-project" id="noscript-${escapeHtml(project.id)}">`,
       `            <p class="noscript-project-provenance">${escapeHtml(project.provenance)}</p>`,
       `            <h3>${escapeHtml(project.label)}</h3>`,
@@ -178,12 +178,19 @@ export function renderNoscriptProjects(lineEnding = "\n") {
       `            <p class="noscript-project-metric">${escapeHtml(project.metric)} <small>${escapeHtml(project.metricNote)}</small></p>`,
       `            <p class="noscript-project-pitch">${escapeHtml(project.pitch)}</p>`,
       `            <ul class="noscript-project-highlights" aria-label="Project highlights">${highlights}</ul>`,
-      `            <ul class="noscript-stack" aria-label="Technologies used">${stack}</ul>`,
-      '            <nav class="noscript-project-links" aria-label="Project links">',
-      renderLinks(project.links, lineEnding, "              "),
-      "            </nav>",
-      "          </article>"
-    ].join(lineEnding);
+      `            <ul class="noscript-stack" aria-label="Technologies used">${stack}</ul>`
+    ];
+    // Only emit the links navigation landmark when the project actually has
+    // links, so private projects don't render an empty <nav>.
+    if (project.links?.length) {
+      lines.push(
+        '            <nav class="noscript-project-links" aria-label="Project links">',
+        renderLinks(project.links, lineEnding, "              "),
+        "            </nav>"
+      );
+    }
+    lines.push("          </article>");
+    return lines.join(lineEnding);
   }).join(lineEnding);
 
   return [

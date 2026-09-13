@@ -11,6 +11,7 @@
     "content:sync": "node scripts/sync-project-content.mjs",
     "content:check": "node scripts/sync-project-content.mjs --check",
     "structured-data:check": "node scripts/check-structured-data.mjs",
-    "indexing:check": "node scripts/check-indexing-signals.mjs"
+    "indexing:check": "node scripts/check-indexing-signals.mjs",
+    "test": "node --test \"tests/**/*.test.mjs\""
   }
 }

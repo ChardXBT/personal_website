@@ -172,18 +172,20 @@ export const PROJECTS = deepFreeze([
       "Evaluated two ranking models and retained the stronger baseline"
     ],
     stack: ["Python", "FastAPI", "SQLAlchemy", "SQLite", "Next.js", "TypeScript", "NumPy"],
-    links: []
+    links: [
+      { label: "GitHub", href: "https://github.com/ChardXBT/Runway" }
+    ]
   },
   {
     id: "marketplace-operations",
     categoryLabel: "Marketplace systems",
     label: "CS Marketplace Operations",
-    listMetric: "73K+ listings · 500+ sold · US$2.3K+ net",
+    listMetric: "73K+ listings · 500+ sold · US$4K+ net",
     description: "Automated pricing, purchasing, inventory, listings, and transaction recovery.",
     provenance: "Public architecture · sanitized demos · private live operations",
     metric: "73K+ listings · 500+ sold",
-    metricNote: "US$2.3K+ net realized profit after fees",
-    pitch: "Connected marketplace research and operations across 73K+ listings, 150+ targets, 500+ sales, and US$2.3K+ in realized profit.",
+    metricNote: "US$4K+ net realized profit after fees",
+    pitch: "Connected marketplace research and operations across 73K+ listings, 150+ targets, 500+ sales, and US$4K+ in realized profit.",
     highlights: [
       "Checks live prices and submits bounded offers or purchases",
       "Synchronizes inventory, reprices orders, relists items, and confirms sales",
