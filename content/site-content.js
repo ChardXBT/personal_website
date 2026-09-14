@@ -160,11 +160,11 @@ export const PROJECTS = deepFreeze([
     id: "runway",
     categoryLabel: "Creator tools",
     label: "Runway",
-    listMetric: "771 posts indexed · live on a 280K channel",
+    listMetric: "771 posts indexed · live on a 280K+ follower channel",
     description: "Creator research, review, and scheduling grounded in 771 past posts.",
     provenance: "Private project · creator data omitted",
     metric: "771 posts indexed",
-    metricNote: "Used for live posts on a 280K channel",
+    metricNote: "Used for live posts on a 280K+ follower channel",
     pitch: "Turns a channel’s history into searchable references, grounded captions, human review, and scheduled content.",
     highlights: [
       "4,800+ searchable image and text records with 136K+ cached comparisons",
