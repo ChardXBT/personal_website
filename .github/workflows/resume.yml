@@ -1,0 +1,57 @@
+name: Resume
+
+# Only a PDF landing directly in documents/resume/ counts as a resume change.
+# Letters, other documents, and the resume archive are all out of scope, so
+# uploading those never restamps the site's resume link.
+on:
+  push:
+    branches: [main]
+    paths:
+      - documents/resume/*.pdf
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: resume-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history so the sync can tell which PDF was added most recently.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Sync resume link
+        id: sync
+        run: |
+          summary="$(npm run --silent resume:sync | tail -n 1 | tr -d '\r\n')"
+          echo "$summary"
+          echo "summary=$summary" >> "$GITHUB_OUTPUT"
+
+      - name: Check indexing signals
+        run: npm run indexing:check
+
+      - name: Commit the synced resume
+        # The summary carries a repository filename, so pass it through the
+        # environment rather than expanding it into the shell command.
+        env:
+          SYNC_SUMMARY: ${{ steps.sync.outputs.summary }}
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Resume already in sync; nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Publish latest resume PDF" -m "$SYNC_SUMMARY"
+          git push

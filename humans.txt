@@ -1,0 +1,17 @@
+/* SITE */
+Website: https://ericsong.tech/
+Last updated: 2026-09-22
+
+/* AUTHOR */
+Name: Eric Song
+Email: ericy.song@mail.utoronto.ca
+Location: Toronto, Canada
+GitHub: https://github.com/ChardXBT
+LinkedIn: https://www.linkedin.com/in/ericyuchensong/
+
+/* AFFILIATION */
+University of Toronto
+Mathematics and Statistics
+
+/* PROJECT */
+Featured: Property Appraisal Workspace, Runway, CS Marketplace Operations, Automation Supervisor, Monitoring & Data Tools
