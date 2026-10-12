@@ -1,0 +1,5 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Never line-ending-normalize PDFs; a corrupted resume is silent until download.
+*.pdf binary
