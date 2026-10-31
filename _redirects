@@ -1,0 +1,22 @@
+# Stable share link for the current resume, whatever PDF is uploaded.
+/resume.pdf /documents/resume/eric-song-resume.pdf 301
+
+# Unlisted documents: shared by direct link only, never linked from the site.
+# 302 so the short link can move to the next dated copy without browsers caching it.
+/transcript /documents/other-documents/eric-song-academic-history-2026-10-31.pdf 302
+/transcript.pdf /documents/other-documents/eric-song-academic-history-2026-10-31.pdf 302
+/enrolment /documents/other-documents/eric-song-confirmation-of-enrolment-2026-10-31.pdf 302
+/enrolment.pdf /documents/other-documents/eric-song-confirmation-of-enrolment-2026-10-31.pdf 302
+
+# Preserve established public document URLs.
+/ESResume.pdf /documents/resume/eric-song-resume.pdf 301
+/assets/docs/7f0a386addff.pdf /documents/recommendation-letters/philip-oreopoulos-recommendation-letter.pdf 301
+/assets/docs/tutoring-letter-of-recommendation.pdf /documents/recommendation-letters/tutoring-letter-of-recommendation.pdf 301
+
+# Preserve legacy favicon and manifest URLs.
+/favicon_io/android-chrome-192x192.png /assets/icons/android-chrome-192x192.png 301
+/favicon_io/android-chrome-512x512.png /assets/icons/android-chrome-512x512.png 301
+/favicon_io/apple-touch-icon.png /assets/icons/apple-touch-icon.png 301
+/favicon_io/favicon-16x16.png /assets/icons/favicon-16x16.png 301
+/favicon_io/favicon-32x32.png /assets/icons/favicon-32x32.png 301
+/favicon_io/site.webmanifest /assets/icons/site.webmanifest 301
