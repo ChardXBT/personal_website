@@ -4,6 +4,11 @@ import {
   PROJECTS,
   REEL_ITEMS
 } from "../../content/site-content.js?v=20261031-3";
+import {
+  getProjectPhase,
+  PROJECT_PHASES,
+  transitionProjectPhase
+} from "./project-phase.js?v=20261107-1";
 
 export {
   BUILD_CATEGORIES,
@@ -502,7 +507,7 @@ function createIntroExperience(doc = document, win = window) {
 
   function measureProjectReel() {
     if (!buildSentence || !projectReel || reelGlyphs.length !== reelWords.length) return;
-    if (stage.dataset.projectPhase === "list") {
+    if (getProjectPhase(stage) === PROJECT_PHASES.LIST) {
       buildSentence.style.removeProperty("--sentence-shift");
       buildSentence.style.removeProperty("--sentence-shift-y");
       return;
@@ -528,7 +533,7 @@ function createIntroExperience(doc = document, win = window) {
   function cacheSentenceShifts() {
     sentenceShifts = [];
     if (!buildSentence || !buildHeading || !projectReel || reelGlyphs.length !== reelWords.length) return;
-    if (stage.dataset.projectPhase === "list") return;
+    if (getProjectPhase(stage) === PROJECT_PHASES.LIST) return;
     if (stackedBuildQuery.matches) {
       sentenceShifts = reelGlyphs.map(() => 0);
       return;
@@ -561,8 +566,8 @@ function createIntroExperience(doc = document, win = window) {
 
   function recenterActiveSentence() {
     if (!buildSentence) return;
-    const projectPhase = stage.dataset.projectPhase;
-    if (projectPhase !== "idle" && projectPhase !== "reel") return;
+    const projectPhase = getProjectPhase(stage);
+    if (projectPhase !== PROJECT_PHASES.IDLE && projectPhase !== PROJECT_PHASES.REEL) return;
     if (stackedBuildQuery.matches) {
       buildSentence.style.setProperty("--sentence-shift", "0px");
       return;
@@ -573,7 +578,7 @@ function createIntroExperience(doc = document, win = window) {
   }
 
   function startIncomingReelWord(word, index) {
-    if (stage.dataset.projectPhase !== "reel") return;
+    if (getProjectPhase(stage) !== PROJECT_PHASES.REEL) return;
     setActiveReelWord(index);
     word.classList.remove("is-current", "is-outgoing");
     word.classList.add("is-incoming");
@@ -907,7 +912,7 @@ function createIntroExperience(doc = document, win = window) {
 
     projectRows.forEach((row, index) => {
       const reveal = () => {
-        if (stage.dataset.projectPhase !== "list") return;
+        if (getProjectPhase(stage) !== PROJECT_PHASES.LIST) return;
         row.classList.add("is-revealed");
       };
       if (index === 0) reveal();
@@ -916,18 +921,18 @@ function createIntroExperience(doc = document, win = window) {
 
     const finalRowStart = (projectRows.length - 1) * TIMING.LIST_ROW_STAGGER;
     scheduleTimeline(() => {
-      if (stage.dataset.projectPhase !== "list") return;
+      if (getProjectPhase(stage) !== PROJECT_PHASES.LIST) return;
       onComplete?.();
     }, finalRowStart + TIMING.LIST_ROW_SETTLE);
   }
 
   function revealAllProjects({ onComplete = null } = {}) {
-    if (stage.dataset.projectPhase === "list") {
+    if (getProjectPhase(stage) === PROJECT_PHASES.LIST) {
       revealProjectRows({ onComplete });
       return;
     }
     const shouldAnimateResolution = state === STATES.PLAYING_INTRO
-      && stage.dataset.projectPhase === "reel"
+      && getProjectPhase(stage) === PROJECT_PHASES.REEL
       && !motionReduced
       && buildSentence
       && buildHeading;
@@ -945,7 +950,7 @@ function createIntroExperience(doc = document, win = window) {
       buildSentence?.style.removeProperty("--sentence-shift");
       buildSentence?.style.removeProperty("--sentence-shift-y");
     }
-    stage.dataset.projectPhase = "list";
+    transitionProjectPhase(stage, PROJECT_PHASES.LIST);
     clearReelWordStates();
     if (!shouldAnimateResolution) {
       revealProjectRows({ onComplete });
@@ -959,13 +964,13 @@ function createIntroExperience(doc = document, win = window) {
     buildSentence.style.setProperty("--sentence-shift-y", `${Math.round(invertedShiftY * 100) / 100}px`);
     buildSentence.getBoundingClientRect();
     win.requestAnimationFrame(() => {
-      if (stage.dataset.projectPhase !== "list") return;
+      if (getProjectPhase(stage) !== PROJECT_PHASES.LIST) return;
       stage.classList.remove("is-resolving-list");
       stage.classList.add("is-settling-heading");
       buildSentence.style.setProperty("--sentence-shift", "0px");
       buildSentence.style.setProperty("--sentence-shift-y", "0px");
       scheduleTimeline(() => {
-        if (stage.dataset.projectPhase !== "list") return;
+        if (getProjectPhase(stage) !== PROJECT_PHASES.LIST) return;
         stage.classList.remove("is-settling-heading");
         buildSentence.style.removeProperty("--sentence-shift");
         buildSentence.style.removeProperty("--sentence-shift-y");
@@ -973,7 +978,7 @@ function createIntroExperience(doc = document, win = window) {
         revealProjectRows({
           stagger: true,
           onComplete: () => {
-            if (stage.dataset.projectPhase === "list") {
+            if (getProjectPhase(stage) === PROJECT_PHASES.LIST) {
               stage.classList.remove("is-resolving-list", "is-settling-heading", "is-settling-list");
               onComplete?.();
             }
@@ -984,7 +989,7 @@ function createIntroExperience(doc = document, win = window) {
   }
 
   function resetProjectSequence() {
-    stage.dataset.projectPhase = "idle";
+    transitionProjectPhase(stage, PROJECT_PHASES.IDLE);
     delete stage.dataset.reelIndex;
     activeReelIndex = 0;
     sentenceShifts = [];
@@ -1012,7 +1017,7 @@ function createIntroExperience(doc = document, win = window) {
     });
     detachIntroGestureGuards();
     setScene("build");
-    const projectsResolved = stage.dataset.projectPhase === "list"
+    const projectsResolved = getProjectPhase(stage) === PROJECT_PHASES.LIST
       && projectRows.every((row) => row.classList.contains("is-revealed"));
     if (!projectsResolved) revealAllProjects();
     stage.classList.remove("is-resolving-list", "is-settling-heading", "is-settling-list");
@@ -1073,16 +1078,17 @@ function createIntroExperience(doc = document, win = window) {
 
     scheduleTimeline(() => { setScene("school"); }, TIMING.SCHOOL);
     scheduleTimeline(() => {
-      if (state !== STATES.PLAYING_INTRO || stage.dataset.projectPhase === "list") return;
+      if (state !== STATES.PLAYING_INTRO || getProjectPhase(stage) === PROJECT_PHASES.LIST) return;
       measureProjectReel();
       win.requestAnimationFrame(() => {
-        if (state !== STATES.PLAYING_INTRO || stage.dataset.projectPhase === "list") return;
+        if (state !== STATES.PLAYING_INTRO || getProjectPhase(stage) === PROJECT_PHASES.LIST) return;
         setActiveReelWord(0);
       });
     }, Math.max(0, TIMING.BUILD - 50));
     scheduleTimeline(() => { setScene("build"); }, TIMING.BUILD);
     scheduleTimeline(() => {
-      stage.dataset.projectPhase = "reel";
+      if (state !== STATES.PLAYING_INTRO || getProjectPhase(stage) === PROJECT_PHASES.LIST) return;
+      transitionProjectPhase(stage, PROJECT_PHASES.REEL);
       showReelWord(0);
     }, TIMING.REEL_START);
     reelWords.slice(1).forEach((_word, index) => {
@@ -1092,7 +1098,7 @@ function createIntroExperience(doc = document, win = window) {
     scheduleTimeline(() => {
       revealAllProjects({
         onComplete: () => {
-          if (state === STATES.PLAYING_INTRO && stage.dataset.projectPhase === "list") {
+          if (state === STATES.PLAYING_INTRO && getProjectPhase(stage) === PROJECT_PHASES.LIST) {
             finishIntro(STATES.PROJECT_STAGE);
           }
         }
