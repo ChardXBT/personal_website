@@ -13,6 +13,7 @@
     "resume:sync": "node scripts/sync-resume.mjs",
     "resume:check": "node scripts/sync-resume.mjs --check",
     "structured-data:check": "node scripts/check-structured-data.mjs",
-    "indexing:check": "node scripts/check-indexing-signals.mjs"
+    "indexing:check": "node scripts/check-indexing-signals.mjs",
+    "project-phase:check": "node scripts/check-project-phase.mjs"
   }
 }
